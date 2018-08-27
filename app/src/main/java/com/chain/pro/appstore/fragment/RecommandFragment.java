@@ -52,6 +52,8 @@ public class RecommandFragment extends Fragment implements RecommandContract.Vie
     @Inject
     RecommandContract.Presenter presnter;
 
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
