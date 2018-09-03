@@ -5,6 +5,8 @@ import com.chain.pro.appstore.bean.PageBean;
 import com.chain.pro.appstore.data.RecommandModel;
 import com.chain.pro.appstore.presenter.contract.RecommandContract;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,7 +15,6 @@ public class RecommandPresnter implements RecommandContract.Presenter {
 
     private RecommandContract.View mView;
     private RecommandModel model;
-
 
     public RecommandPresnter(RecommandContract.View view, RecommandModel model) {
         this.mView = view;
