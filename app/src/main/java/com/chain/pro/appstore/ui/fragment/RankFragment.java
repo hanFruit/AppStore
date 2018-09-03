@@ -1,4 +1,4 @@
-package com.chain.pro.appstore.fragment;
+package com.chain.pro.appstore.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,10 +11,12 @@ import com.chain.pro.appstore.R;
 
 public class RankFragment extends Fragment {
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return inflater.inflate(R.layout.fragment_rank,container,false);
+        return inflater.inflate(R.layout.fragment_rank, container, false);
     }
+
+
 }

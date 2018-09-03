@@ -1,4 +1,4 @@
-package com.chain.pro.appstore;
+package com.chain.pro.appstore.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.chain.pro.appstore.adapter.FragmentAdapter;
+import com.chain.pro.appstore.R;
+import com.chain.pro.appstore.ui.adapter.FragmentAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

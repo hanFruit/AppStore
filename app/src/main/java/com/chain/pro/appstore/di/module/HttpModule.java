@@ -1,22 +1,26 @@
-package com.chain.pro.appstore.http;
+package com.chain.pro.appstore.di.module;
 
+
+import com.chain.pro.appstore.data.http.APIService;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Ivan on 2016/12/30.
- */
+@Module
+public class HttpModule {
 
-public class HttpManager {
-
-
-    public OkHttpClient getOkHttpClient(){
+    @Provides
+    @Singleton
+    public OkHttpClient getOkHttpClient() {
 
         // log用拦截器
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
@@ -42,7 +46,9 @@ public class HttpManager {
     }
 
 
-    public Retrofit getRetrofit(OkHttpClient okHttpClient){
+    @Provides
+    @Singleton
+    public Retrofit getRetrofit(OkHttpClient okHttpClient) {
 
 
         Retrofit.Builder builder = new Retrofit.Builder()
@@ -55,4 +61,12 @@ public class HttpManager {
         return builder.build();
 
     }
+
+
+    @Provides
+    @Singleton
+    public APIService provideApiService(Retrofit retrofit) {
+        return retrofit.create(APIService.class);
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.chain.pro.appstore.fragment;
+package com.chain.pro.appstore.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

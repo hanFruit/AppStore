@@ -1,15 +1,14 @@
-package com.chain.pro.appstore.adapter;
+package com.chain.pro.appstore.ui.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.ViewGroup;
 
 import com.chain.pro.appstore.bean.FragmentInfo;
-import com.chain.pro.appstore.fragment.CategoryFragment;
-import com.chain.pro.appstore.fragment.GameFragment;
-import com.chain.pro.appstore.fragment.RankFragment;
-import com.chain.pro.appstore.fragment.RecommandFragment;
+import com.chain.pro.appstore.ui.fragment.CategoryFragment;
+import com.chain.pro.appstore.ui.fragment.GameFragment;
+import com.chain.pro.appstore.ui.fragment.RankFragment;
+import com.chain.pro.appstore.ui.fragment.RecommandFragment;
 
 import java.util.ArrayList;
 import java.util.List;

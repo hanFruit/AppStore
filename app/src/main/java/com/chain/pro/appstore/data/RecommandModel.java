@@ -2,19 +2,21 @@ package com.chain.pro.appstore.data;
 
 import com.chain.pro.appstore.bean.AppInfo;
 import com.chain.pro.appstore.bean.PageBean;
-import com.chain.pro.appstore.http.APIService;
-import com.chain.pro.appstore.http.HttpManager;
+import com.chain.pro.appstore.data.http.APIService;
 
 import retrofit2.Callback;
 
 public class RecommandModel {
 
 
-    public void getApp(Callback<PageBean<AppInfo>> callback) {
+    private APIService mAPIService;
 
-        HttpManager httpManager = new HttpManager();
-        APIService apiService = httpManager.getRetrofit(httpManager.getOkHttpClient()).create(APIService.class);
-        apiService.getApps("{'page':0}").enqueue(callback);
+    public RecommandModel(APIService apiService) {
+        this.mAPIService = apiService;
+    }
 
+    public void getRecomandList(Callback<PageBean<AppInfo>> call) {
+
+        mAPIService.getApps("{'page':0}").enqueue(call);
     }
 }

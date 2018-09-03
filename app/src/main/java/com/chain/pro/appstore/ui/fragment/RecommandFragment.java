@@ -1,4 +1,4 @@
-package com.chain.pro.appstore.fragment;
+package com.chain.pro.appstore.ui.fragment;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -8,23 +8,20 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chain.pro.appstore.AppApplication;
 import com.chain.pro.appstore.R;
 import com.chain.pro.appstore.bean.AppInfo;
-import com.chain.pro.appstore.bean.PageBean;
-import com.chain.pro.appstore.deinject.DaggerRecommandComponent;
-import com.chain.pro.appstore.deinject.RecommandModule;
-import com.chain.pro.appstore.http.APIService;
-import com.chain.pro.appstore.http.HttpManager;
+import com.chain.pro.appstore.di.component.DaggerAppComponent;
+import com.chain.pro.appstore.di.component.DaggerRecommandComponent;
+import com.chain.pro.appstore.di.module.RecommandModule;
 import com.chain.pro.appstore.presenter.RecommandPresnter;
 import com.chain.pro.appstore.presenter.contract.RecommandContract;
 import com.chain.pro.appstore.ui.adapter.RecomendAppAdatper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,9 +29,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RecommandFragment extends Fragment implements RecommandContract.View {
 
@@ -43,27 +37,24 @@ public class RecommandFragment extends Fragment implements RecommandContract.Vie
     Unbinder unbinder;
 
     private RecomendAppAdatper mAdapter;
-    private List<AppInfo> mList = new ArrayList<>();
-
 
     @Inject
     ProgressDialog mProgressDialog;
-
     @Inject
-    RecommandContract.Presenter presnter;
-
+    RecommandPresnter mPresnter;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_recommand, container, false);
         unbinder = ButterKnife.bind(this, view);
 
-        DaggerRecommandComponent.builder()
-                .recommandModule(new RecommandModule(this)).build().inject(this);
 
+        DaggerRecommandComponent.builder()
+                .appComponent(((AppApplication) (getActivity().getApplication())).getAppComponent())
+                .recommandModule(new RecommandModule(this))
+                .build().inject(this);
 
         return view;
     }
@@ -78,7 +69,7 @@ public class RecommandFragment extends Fragment implements RecommandContract.Vie
 
     private void initData() {
 
-        presnter.requestData();
+        mPresnter.requestData();
     }
 
     private void initRecleView(List<AppInfo> list) {
@@ -98,13 +89,14 @@ public class RecommandFragment extends Fragment implements RecommandContract.Vie
         unbinder.unbind();
     }
 
+
     @Override
-    public void showResult(List<AppInfo> list) {
-        initRecleView(list);
+    public void showResult(List<AppInfo> datas) {
+        initRecleView(datas);
     }
 
     @Override
-    public void showError(String msg) {
+    public void showNodata() {
 
     }
 

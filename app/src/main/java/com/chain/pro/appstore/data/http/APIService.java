@@ -1,4 +1,4 @@
-package com.chain.pro.appstore.http;
+package com.chain.pro.appstore.data.http;
 
 import com.chain.pro.appstore.bean.AppInfo;
 import com.chain.pro.appstore.bean.PageBean;
