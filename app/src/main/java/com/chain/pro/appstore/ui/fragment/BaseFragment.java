@@ -28,8 +28,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     T mPresenter;
 
 
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
