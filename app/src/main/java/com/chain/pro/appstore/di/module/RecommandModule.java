@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 
 import com.chain.pro.appstore.data.RecommandModel;
 import com.chain.pro.appstore.data.http.APIService;
-import com.chain.pro.appstore.presenter.RecommandPresnter;
 import com.chain.pro.appstore.presenter.contract.RecommandContract;
 import com.chain.pro.appstore.ui.fragment.RecommandFragment;
 
@@ -27,11 +26,11 @@ public class RecommandModule {
     }
 
 
-    @Provides
-    public RecommandPresnter provideRecommandPresnter(RecommandContract.View view, RecommandModel model) {
+/*    @Provides
+    public RecommandPresnter provideRecommandPresnter(RecommandModel model,RecommandContract.View view) {
 
-        return new RecommandPresnter(view, model);
-    }
+        return new RecommandPresnter(model, view);
+    }*/
 
     @Provides
     public RecommandModel provideRecommandModel(APIService apiService) {

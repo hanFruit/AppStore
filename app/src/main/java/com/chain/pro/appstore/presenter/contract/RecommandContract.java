@@ -16,8 +16,4 @@ public interface RecommandContract {
     }
 
 
-    interface Presenter extends BasePresenter {
-
-        void requestData();
-    }
 }

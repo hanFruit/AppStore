@@ -11,22 +11,21 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RecommandPresnter implements RecommandContract.Presenter {
+public class RecommandPresnter extends BasePresenter<RecommandModel, RecommandContract.View> {
 
-    private RecommandContract.View mView;
-    private RecommandModel model;
 
-    public RecommandPresnter(RecommandContract.View view, RecommandModel model) {
-        this.mView = view;
-        this.model = model;
+    @Inject
+    public RecommandPresnter(RecommandModel model, RecommandContract.View view) {
+        super(model, view);
+
     }
 
-    @Override
+
     public void requestData() {
 
         mView.showLoading();
 
-        model.getRecomandList(new Callback<PageBean<AppInfo>>() {
+        mModel.getRecomandList(new Callback<PageBean<AppInfo>>() {
             @Override
             public void onResponse(Call<PageBean<AppInfo>> call, Response<PageBean<AppInfo>> response) {
                 if (response != null) {

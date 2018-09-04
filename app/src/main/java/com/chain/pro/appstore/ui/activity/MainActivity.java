@@ -1,13 +1,11 @@
 package com.chain.pro.appstore.ui.activity;
 
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,12 +13,12 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.chain.pro.appstore.R;
+import com.chain.pro.appstore.di.component.AppComponent;
 import com.chain.pro.appstore.ui.adapter.FragmentAdapter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.container)
     LinearLayout container;
@@ -36,14 +34,14 @@ public class MainActivity extends AppCompatActivity {
     ViewPager viewpager;
     private View headerView;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
 
-        ButterKnife.bind(this);
-
-
+    @Override
+    protected void initView() {
         headerView = navigationView.getHeaderView(0);
         headerView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +89,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
         viewpager.setAdapter(adapter);
         tablayout.setupWithViewPager(viewpager);
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    public void setUpActivityComponent(AppComponent component) {
 
     }
 }
